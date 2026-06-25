@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv/config.js'
 import mongoose from 'mongoose'
-
+import {sinIN} from './model/schema'
 const app = express()
 const port= process.env.PORT ||4001
 const mongo = process.env.MONGODB_URI
@@ -19,7 +19,7 @@ db.once ('open', ()=>{
 })
 
 
-
+app.call('/user',sinIn)
 
 
 
