@@ -1,15 +1,55 @@
-class Department {
-  constructor(name, code) {
-    this.name = name;
-    this.code = code;
-    this.students = [];
+class Course {
+  #enrollmentLimit; // Private property
+
+  constructor(title, courseCode, limit = 30) {
+    this.title = title;
+    this.courseCode = courseCode;
+    this.students = []; // Array of objects: { name: string, grade: number }
+    this.#enrollmentLimit = limit;
   }
 
-  addStudent(student) {
-    this.students.push(student);
+  // Check if course is full before adding
+  enrollStudent(studentName) {
+    if (this.students.length >= this.#enrollmentLimit) {
+      console.log(`Error: ${this.title} is full.`);
+      return false;
+    }
+    
+    this.students.push({ name: studentName, grade: null });
+    return true;
+  }
+
+  // Assign a grade to a specific student
+  assignGrade(studentName, grade) {
+    const student = this.students.find(s => s.name === studentName);
+    if (student) {
+      student.grade = grade;
+    } else {
+      console.log(`Student ${studentName} not found.`);
+    }
+  }
+
+  // Calculate class average dynamically
+  get classAverage() {
+    const gradedStudents = this.students.filter(s => s.grade !== null);
+    if (gradedStudents.length === 0) return 0;
+
+    const total = gradedStudents.reduce((sum, s) => sum + s.grade, 0);
+    return total / gradedStudents.length;
   }
 }
 
 // Example usage:
-const csDept = new Department('Computer Science', 'CS-101');
-console.log(csDept.code); // Output: CS-101
+const jsCourse = new Course('Advanced JavaScript', 'JS-202', 2);
+
+// 1. Enroll students
+jsCourse.enrollStudent('Alex');
+jsCourse.enrollStudent('Taylor');
+jsCourse.enrollStudent('Jordan'); // Output: Error: Advanced JavaScript is full.
+
+// 2. Assign grades
+jsCourse.assignGrade('Alex', 95);
+jsCourse.assignGrade('Taylor', 87);
+
+// 3. Get average
+console.log(`Average: ${jsCourse.classAverage}%`); // Output: Average: 91%
