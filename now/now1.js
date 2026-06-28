@@ -53,3 +53,9 @@ jsCourse.assignGrade('Taylor', 87);
 
 // 3. Get average
 console.log(`Average: ${jsCourse.classAverage}%`); // Output: Average: 91%
+# A simple greeting program
+print("Hello! Welcome to coding.")
+
+# A loop that counts from 1 to 3
+for number in range(1, 4):
+    print(f"Counting: {number}")
