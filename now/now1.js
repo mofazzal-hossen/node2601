@@ -36,3 +36,11 @@ enum Role {
 
 
 
+
+
+def check_email(email):
+    if "@" in email and "." in email:
+        return "Valid email format"
+    return "Invalid email format"
+
+print(check_email("user@example.com"))
