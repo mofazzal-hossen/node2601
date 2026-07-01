@@ -44,3 +44,13 @@ def check_email(email):
     return "Invalid email format"
 
 print(check_email("user@example.com"))
+
+
+{
+
+"name":"titi",
+"email":"rahat@example.com",
+"password":"securePass123!"
+
+
+}
