@@ -54,3 +54,13 @@ print(check_email("user@example.com"))
 
 
 }
+
+function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const formData = new FormData(e.currentTarget);
+  const data = Object.fromEntries(formData);
+  console.log('Form data:', data);
+}
+
+
+
